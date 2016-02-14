@@ -1,0 +1,1 @@
+<?= app\helpers\Html::img('/photo/img'.$model->id.'_ax400')?>
