@@ -1,7 +1,7 @@
 <?php
 /**
  * Description of Application
- *
+ * test
  * @author mateusz
  */
 class Application extends yii\web\Application{
