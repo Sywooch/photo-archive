@@ -4,6 +4,6 @@ return [
         // list of component configurations
     ],
     'params' => [
-        'uploadsPath' => '/var/www/MAIN/yii2-app-basic/uploads/',
+        'uploadsPath' => Yii::$app->basePath.'/uploads/',
     ],
 ];

@@ -30,10 +30,10 @@ $form = ActiveForm::begin([
     <div class="form-group">
         <div class="col-lg-12">
 			<?= \app\helpers\Html::submitButton('Zapisz', ['class' => 'btn btn-primary']) ?>
-			<? if ($id > 0) : ?>
+			<?php if ($id > 0) : ?>
 				<?= \app\helpers\Html::a('Dodaj zdjęcia', ['/photo/admin/photo/add','album_id'=>$id], ['class' => 'btn btn-default']); ?>
 				<?= \app\helpers\Html::a('Przeglądaj zdjęcia', ['/photo/admin/photo/list','album_id'=>$id], ['class' => 'btn btn-default']); ?>
-			<? endif; ?>
+			<?php endif; ?>
         </div>
     </div>
 <?php ActiveForm::end() ?>
