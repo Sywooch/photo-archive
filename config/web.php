@@ -24,29 +24,29 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-//        'mailer' => [
-//            'class' => 'yii\swiftmailer\Mailer',
-//            // send all mails to a file by default. You have to set
-//            // 'useFileTransport' to false and configure a transport
-//            // for the mailer to send real emails.
-//            'useFileTransport' => true,
-//        ],
-		'mailer' => [
+        'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,
-            'messageConfig' => [
-                'from' => ['admin@karczmarczyk.servehttp.com' => 'Admin'], // this is needed for sending emails
-                'charset' => 'UTF-8',
-            ],
-//			'transport' => [
-//				'class' => 'Swift_SmtpTransport',
-//				'host' => 'smtp.gmail.com',
-//				'username' => 'mateusz.karczmarczyk@gmail.com',
-//				'password' => 'cthuluh1',
-//				'port' => '465',
-//				'encryption' => 'ssl',//'tls',
-//			],
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
         ],
+//		'mailer' => [
+//            'class' => 'yii\swiftmailer\Mailer',
+//            'useFileTransport' => false,
+//            'messageConfig' => [
+//                'from' => ['admin@karczmarczyk.servehttp.com' => 'Admin'], // this is needed for sending emails
+//                'charset' => 'UTF-8',
+//            ],
+////			'transport' => [
+////				'class' => 'Swift_SmtpTransport',
+////				'host' => 'smtp.gmail.com',
+////				'username' => 'mateusz.karczmarczyk@gmail.com',
+////				'password' => 'cthuluh1',
+////				'port' => '465',
+////				'encryption' => 'ssl',//'tls',
+////			],
+//        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
