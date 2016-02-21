@@ -18,12 +18,7 @@
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "amnah/yii2-user": "^4.0",
-	"bower-asset/jquery": "@stable",
-	"bower-asset/bootstrap": "@stable",
-    	"bower-asset/jquery-ui": "@stable",
-    	"bower-asset/jquery.inputmask": "@stable",
-    	"bower-asset/punycode": "@stable"
+        "amnah/yii2-user": "^4.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
