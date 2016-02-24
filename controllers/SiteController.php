@@ -48,7 +48,8 @@ class SiteController extends MainappController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $module = \Yii::$app->getModule('photo');
+        return $module->runAction('album/index');
     }
 
     public function actionLogin()

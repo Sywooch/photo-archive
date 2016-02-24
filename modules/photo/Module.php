@@ -30,7 +30,7 @@ class Module extends \yii\base\Module {
 	public function createController($route)
     {
         // check valid routes
-        $validRoutes  = [$this->defaultRoute, "admin", "copy", "auth"];
+        $validRoutes  = [$this->defaultRoute, "admin", "album"];
         $isValidRoute = false;
         foreach ($validRoutes as $validRoute) {
             if (strpos($route, $validRoute) === 0) {

@@ -15,10 +15,10 @@ class DefaultController extends \app\controllers\MainappController{
 //		return parent::__call($name, $params);
 //	}
 //	
-//	public function actionIndex()
-//	{
-//		exit;
-//	}
+	public function actionIndex()
+	{
+		exit;
+	}
 	
 	public function createAction($id) 
 	{
