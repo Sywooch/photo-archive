@@ -20,7 +20,9 @@ class AlbumController extends \app\controllers\MainappController
     
     public function actionShow($id)
     {
-        return $this->render('show');
+        return $this->render('show',[
+            'id' => $id
+        ]);
     }
     
     public function actionRead()
