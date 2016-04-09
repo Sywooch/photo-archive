@@ -80,7 +80,7 @@ AppAsset::register($this);
 	
     <div class="container">
 		<div class="row flash-container">
-			<? \app\helpers\Flash::getAll(); ?>
+			<?php \app\helpers\Flash::getAll(); ?>
 		</div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

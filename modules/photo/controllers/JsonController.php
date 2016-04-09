@@ -13,13 +13,7 @@ class JsonController extends \app\controllers\MainappController
 	public $module;
     
     public function actionPhotos($album_id)
-    {
-//        $photos = \app\modules\photo\models\Photos::find()->where(
-//            'is_deleted=0 AND album_id=:album_id',
-//            [':album_id'=>$album_id]
-//        )->asArray()->all();
-//        Yii::$app->response->format = 'json';
-        
+    {        
         $pageSize = 3;
         
         $photos = \app\modules\photo\models\Photos::find()->where(

@@ -18,6 +18,7 @@ class Image
 	private $availableResolutions = [
 		'axa',
 		'ax400',
+        'ax200',
 		'400x400'
 	];
 	
