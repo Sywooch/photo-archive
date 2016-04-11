@@ -1,0 +1,25 @@
+.tiles-galery {
+    /*overflow: scroll;*/
+    overflow-x: hidden;
+    height: 500px;//for older
+    height: 75vh;
+}
+
+.tiles {
+    
+}
+
+.tiles .col {
+    padding: 0px;
+    margin: 0px;
+}
+
+.tile {
+    padding-left: 2px;
+    padding-bottom: 2px;
+    overflow: hidden;
+}
+
+.scroll-element.scroll-x {
+    display: none !important;
+}

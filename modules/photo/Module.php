@@ -15,7 +15,8 @@ class Module extends \yii\base\Module {
 		parent::init();
 		Yii::configure($this, require(__DIR__ . '/config.php'));
 		
-		$assets = Yii::$app->getAssetManager()->publish(__DIR__.'/assets');//,['forceCopy'=>true]
+        $forceCopy = true;
+		$assets = Yii::$app->getAssetManager()->publish(__DIR__.'/assets',['forceCopy'=>$forceCopy]);
 		if (isset($assets[1])) {
 			$this->assetsPath = $assets[1];
 		}

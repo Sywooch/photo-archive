@@ -2,45 +2,35 @@
 /* ładuję skrypty Angular */
 use app\assets\AngularAsset;
 AngularAsset::register($this);
+/* ładuję skrypty JqueryScroll */
+use app\assets\JqueryScrollAsset;
+JqueryScrollAsset::register($this);
+/* ładuję tiles galery */
+$this->registerCssFile($assetsPath.'/css/tiles-galery.css');
+$this->registerJsFile($assetsPath.'/js/tiles-galery.js');
+/* łąduję moduł never-ending-story */
+$this->registerJsFile($assetsPath.'/js/ng-never-ending-story.js');
 ?>
 <div ng-app="myApp" ng-controller="photosCtrl">
-    <div class="col-lg-12 custom-scroll-content" never-ending-story="nextPhotos()" style="height: 500px; overflow: scroll">
-        <div class="row" ng-repeat="photo in photos" >
-            <div class="col-md-6"><img src="/photo/img{{ photo[0][1].id }}_ax400"></div>
-            <div class="col-md-6">
-                <img src="/photo/img{{ photo[0][2].id }}_ax200">
-                <img src="/photo/img{{ photo[0][3].id }}_ax200">
-            </div>
-        </div>
+    <div class="col-lg-12 tiles-galery scrollbar-dynamic" never-ending-story="nextPhotos()" jquery-scrollbar="jqueryScrollbarOptions">
+        <div class="row tiles" ng-repeat="photo in photos" ng-include="'tile'"></div>
     </div>
     <div ng-show="end">Koniec</div>
+    <script type="text/ng-template" id="tile">
+        <?=$this->render('_ng-tile');?>
+    </script>
 </div>
 
 <script type="text/javascript">
-//    (function($){
-//        $(window).load(function(){
-//            jQuery(".custom-scroll-content").mCustomScrollbar();
-//            alert('2');
-//        });
-//    })(jQuery);
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-dynamic').scrollbar();
+    });
 </script>
+
 <script type="text/javascript">
     var album_id = <?=$id?>;
     
-    var mod = angular.module('never-ending-story',[]);
-    mod.directive('neverEndingStory', ['$rootScope', '$window', function($rootScope, $window){
-        return {
-            link: function(scope, element, attrs) {
-                var raw = element[0];
-                element.bind('scroll', function () {
-                    if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight) {
-                        return scope.$eval(attrs.neverEndingStory);
-                    }
-                });
-            }
-        }
-    }]);
-    
+    /* Główny kontroler */
     var app = angular.module('myApp',['never-ending-story']);
     app.controller('photosCtrl', function($scope, $http){
         $scope.page = 1;
@@ -81,9 +71,5 @@ AngularAsset::register($this);
         
         $scope.loadPhotos(0);
         
-        
     });
-
-    
-    
 </script>

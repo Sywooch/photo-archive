@@ -21,7 +21,8 @@ class AlbumController extends \app\controllers\MainappController
     public function actionShow($id)
     {
         return $this->render('show',[
-            'id' => $id
+            'id' => $id,
+            'assetsPath' => $this->module->assetsPath
         ]);
     }
     
