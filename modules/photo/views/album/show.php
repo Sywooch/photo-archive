@@ -24,22 +24,8 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
     <script type="text/ng-template" id="tile">
         <?=$this->render('_ng-tile');?>
     </script>
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
+    <script type="text/ng-template" id="dialogContent">
+        <?=$this->render('_ng-dialog-content');?>
     </script>
 </div>
 
@@ -96,42 +82,31 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
         $scope.loadPhotos(0);
         
         /* DIALOG */
-        $scope.open = function (size, photo) {
-            alert(photo.id);
-        var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'myModalContent.html',
-          controller: 'photosCtrl',
-          size: size,
-          resolve: {
-            items: function () {
-              return $scope.items;
-            }
-          }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-          $log.info('Modal dismissed at: ' + new Date());
-        });
-      };
-        
+        $scope.open = function (photo) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'dialogContent',
+                controller: 'ModalInstanceCtrl',
+                size: 'full',
+                resolve: {
+                    photo: function () {
+                        return photo;
+                    }
+                }
+            });
+        };
+       
     });
     
-    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-
-        $scope.items = items;
-        $scope.selected = {
-          item: $scope.items[0]
+    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, photo) {
+        $scope.photo = photo;
+        $scope.close = function () {
+            $uibModalInstance.dismiss('cancel');
         };
-
-        $scope.ok = function () {
-          $uibModalInstance.close($scope.selected.item);
+        
+        $scope.tab = 1;
+        $scope.openTab = function(tab) {
+            $scope.tab = tab;
         };
-
-        $scope.cancel = function () {
-          $uibModalInstance.dismiss('cancel');
-        };
-      });
+    });
 </script>
