@@ -14,7 +14,7 @@ class JsonController extends \app\controllers\MainappController
     
     public function actionPhotos($album_id)
     {        
-        $pageSize = 3;
+        $pageSize = 10;
         
         $photos = \app\modules\photo\models\Photos::find()->where(
             'is_deleted=0 AND album_id=:album_id',

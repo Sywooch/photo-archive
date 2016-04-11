@@ -19,7 +19,8 @@ class Image
 		'axa',
 		'ax400',
         'ax200',
-		'400x400'
+		'400x400',
+        'ax800'
 	];
 	
 	public function __construct($photo,$resolution) {

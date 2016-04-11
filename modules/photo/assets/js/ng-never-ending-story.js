@@ -5,11 +5,20 @@ mod.directive('neverEndingStory', ['$rootScope', '$window', function($rootScope,
         link: function(scope, element, attrs) {
             var raw = element[0];
             var gap = 50;
-            element.bind('scroll', function () {
+            var canScroll = true;
+            var handler = function () {
                 if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight - gap) {
-                    return scope.$eval(attrs.neverEndingStory);
+                    if (canScroll) {
+                        canScroll = false;
+                        setTimeout(function(){
+                            canScroll = true;
+                        },2000);
+                        return scope.$eval(attrs.neverEndingStory);
+                    }
                 }
-            });
+            };
+            element.bind('scroll', handler);
+            
         }
     };
 }]);

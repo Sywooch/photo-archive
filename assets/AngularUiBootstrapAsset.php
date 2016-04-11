@@ -5,19 +5,12 @@ use yii\web\AssetBundle;
 use yii\web\View;
 use Yii;
 
-class JqueryScrollAsset extends AssetBundle
+class AngularUiBootstrapAsset extends AssetBundle
 {
     /* http://gromo.github.io/jquery.scrollbar/ */
-    public $sourcePath = '@app/assets/scripts/jquery-scrollbar/';
+    public $sourcePath = '@app/assets/scripts/angular-ui-bootstrap/';
     public $js = [
-        'jquery.scrollbar.min.js',
-    ];
-    public $css = [
-        'jquery.scrollbar.css',
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'ui-bootstrap-tpls-1.3.1.min.js',
     ];
     public $jsOptions = [
         'position' => View::POS_HEAD,
