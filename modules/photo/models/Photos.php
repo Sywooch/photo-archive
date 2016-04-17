@@ -120,4 +120,24 @@ class Photos extends \app\models\AppModel
 	{
 		$this->file_sys_name = (String)$this->id;
 	}
+    
+    static public function findNext($id)
+    {
+        $photo = self::find()->where('id=:id', [':id'=>$id])->one();
+        $next = self::find()->where('album_id=:album_id AND id>:id',[':album_id'=>$photo->album_id,':id'=>$id])->orderBy('id')->one();
+        if (is_object($next)) {
+            return $next;
+        }
+        return $photo;
+    }
+    
+    static public function findPrevious($id)
+    {
+        $photo = self::find()->where('id=:id', [':id'=>$id])->one();
+        $previous = self::find()->where('album_id=:album_id AND id<:id',[':album_id'=>$photo->album_id,':id'=>$id])->orderBy('id DESC')->one();
+        if (is_object($previous)) {
+            return $previous;
+        }
+        return $photo;
+    }
 }

@@ -98,12 +98,29 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
        
     });
     
-    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, photo) {
+    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, photo) {
         $scope.photo = photo;
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
         };
-        
+        $scope.goToNext = function (id) {
+            $http.get('/photo/json/nextphoto?photo_id='+id).then(function(response){
+                if (response.data==='') {
+                    end = true;
+                    return;
+                }
+                $scope.photo = response.data;
+            });
+        };
+        $scope.goToPrevious = function (id) {
+            $http.get('/photo/json/previousphoto?photo_id='+id).then(function(response){
+                if (response.data==='') {
+                    end = true;
+                    return;
+                }
+                $scope.photo = response.data;
+            });
+        };
         $scope.tab = 1;
         $scope.openTab = function(tab) {
             $scope.tab = tab;

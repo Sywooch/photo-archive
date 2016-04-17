@@ -5,7 +5,9 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-9">
+            <button ng-click="goToPrevious(photo.id)"> < </button>
             <img ng-src="/photo/img{{ photo.id }}_ax800" src="" style="max-height: 75vh"/>
+            <button ng-click="goToNext(photo.id)"> > </button>
         </div>    
         <div class="col-md-3">
             <ul class="nav nav-tabs">

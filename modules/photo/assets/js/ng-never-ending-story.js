@@ -4,10 +4,17 @@ mod.directive('neverEndingStory', ['$rootScope', '$window', function($rootScope,
     return {
         link: function(scope, element, attrs) {
             var raw = element[0];
-            var gap = 50;
+            var gap = 0;
             var canScroll = true;
             var handler = function () {
-                if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight - gap) {
+//                var body = document.body,
+//                    html = document.documentElement;
+//
+//                var siteHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+//                                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+                gap = window.outerHeight;//siteHeight - raw.offsetHeight;
+                if(window.scrollY>=raw.offsetHeight-gap) {
+//                if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight - gap) {
                     if (canScroll) {
                         canScroll = false;
                         setTimeout(function(){
@@ -17,8 +24,7 @@ mod.directive('neverEndingStory', ['$rootScope', '$window', function($rootScope,
                     }
                 }
             };
-            element.bind('scroll', handler);
-            
+            angular.element($window).bind('scroll', handler);
         }
     };
 }]);

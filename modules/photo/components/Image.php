@@ -115,6 +115,7 @@ class Image
 	private function setFileName()
 	{
 		$this->filename = $this->filenameOrig.'_'.$this->resolution;
+        $this->filename = str_replace('//', '/', $this->filename);
 	}
 	
 	/**

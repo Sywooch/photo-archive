@@ -41,4 +41,20 @@ class JsonController extends \app\controllers\MainappController
         Yii::$app->response->format = 'json';
         return $array;
     }
+    
+    public function actionNextphoto($photo_id)
+    {
+        $photo = \app\modules\photo\models\Photos::findNext($photo_id);
+        $array = $photo->attributes;
+        Yii::$app->response->format = 'json';
+        return $array;
+    }
+    
+    public function actionPreviousphoto($photo_id)
+    {
+        $photo = \app\modules\photo\models\Photos::findPrevious($photo_id);
+        $array = $photo->attributes;
+        Yii::$app->response->format = 'json';
+        return $array;
+    }
 }
