@@ -5,6 +5,9 @@ AngularAsset::register($this);
 /* ładuję Angular UI Bootstrap */
 use app\assets\AngularUiBootstrapAsset;
 AngularUiBootstrapAsset::register($this);
+/* ładuję Angular Animate */
+use app\assets\AngularAnimateAsset;
+AngularAnimateAsset::register($this);
 /* ładuję skrypty JqueryScroll */
 use app\assets\JqueryScrollAsset;
 JqueryScrollAsset::register($this);
@@ -15,12 +18,20 @@ $this->registerJsFile($assetsPath.'/js/tiles-galery.js');
 $this->registerJsFile($assetsPath.'/js/ng-never-ending-story.js');
 /* ładuję moduł tiles-gallery */
 $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
+/* ładuję moduł imageonload */
+$this->registerJsFile($assetsPath.'/js/ng-imageonload.js');
 ?>
 <div ng-app="myApp" ng-controller="photosCtrl">
     <div id="tiles-galery" class="col-lg-12 tiles-galery scrollbar-light" never-ending-story="nextPhotos()" jquery-scrollbar="jqueryScrollbarOptions">
         <div class="row tiles" ng-repeat="photo in photos" ng-include="'tile'"></div>
     </div>
-    <div ng-if="end">Koniec</div>
+    <div style="clear: both"></div>
+    <div ng-if="loadingPage" class="loadnextpage">
+        <?=yii\helpers\Html::img('\images\loadbar1.gif')?>
+    </div>
+    <div ng-if="end" class="end_tail">
+        Koniec
+    </div>
     <script type="text/ng-template" id="tile">
         <?=$this->render('_ng-tile');?>
     </script>
@@ -39,19 +50,20 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
     var album_id = <?=$id?>;
     
     /* Główny kontroler */
-    var app = angular.module('myApp',['never-ending-story','tiles-gallery','ui.bootstrap']);
+    var app = angular.module('myApp',['never-ending-story','tiles-gallery','ui.bootstrap','imageonload','ngAnimate']);
     app.controller('photosCtrl', function($scope, $http, $uibModal){
         $scope.page = 1;
         $scope.loadingPage = false;
         $scope.photos = [];
-        var end = false;
+        $scope.end = false;
         
         $scope.gallery_width = document.getElementById('tiles-galery').clientWidth;
         
         $scope.loadPhotos = function(next) {
-            $http.get('/photo/json/photos?album_id='+album_id+'&page='+$scope.page).then(function(response){
+            $http.get('/photo/json/photos?album_id='+album_id+'&page='+$scope.page).then(function(response){      
                 if (response.data==='') {
-                    end = true;
+                    $scope.loadingPage = false;
+                    $scope.end = true;
                     return;
                 }
                 var temp = [];
@@ -73,7 +85,10 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
         };
         
         $scope.nextPhotos = function() {
-            if (end) return;
+            if ($scope.end) {
+                $scope.loadingPage = false;
+                return;
+            }
             $scope.loadingPage = true;
             $scope.page++;
             $scope.loadPhotos(1);
@@ -98,12 +113,17 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
        
     });
     
-    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, photo) {
+    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, photo, $document) {
         $scope.photo = photo;
+        $scope.visiblePhoto = true;
+        $scope.showPhoto = function() {
+            $scope.visiblePhoto = true;
+        };
         $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
         };
         $scope.goToNext = function (id) {
+            $scope.visiblePhoto = false;
             $http.get('/photo/json/nextphoto?photo_id='+id).then(function(response){
                 if (response.data==='') {
                     end = true;
@@ -113,6 +133,7 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
             });
         };
         $scope.goToPrevious = function (id) {
+            $scope.visiblePhoto = false;
             $http.get('/photo/json/previousphoto?photo_id='+id).then(function(response){
                 if (response.data==='') {
                     end = true;
@@ -125,5 +146,14 @@ $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
         $scope.openTab = function(tab) {
             $scope.tab = tab;
         };
+        
+        $document.bind("keydown keypress", function(event) {
+            if(event.keyCode == 39) {
+                $scope.goToNext($scope.photo.id);
+            }
+            if(event.keyCode == 37) {
+                $scope.goToPrevious($scope.photo.id);
+            }
+        });
     });
 </script>

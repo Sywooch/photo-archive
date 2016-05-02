@@ -5,9 +5,22 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-9">
-            <button ng-click="goToPrevious(photo.id)"> < </button>
-            <img ng-src="/photo/img{{ photo.id }}_ax800" src="" style="max-height: 75vh"/>
-            <button ng-click="goToNext(photo.id)"> > </button>
+            <table class="photo-main-container">
+                <tr>
+                    <td class="photo-button-container photo-button-container-left">
+                        <button ng-click="goToPrevious(photo.id)"> < </button>
+                    </td>
+                    <td class="photo-container">
+                        <div class="loader-in-dialog" ng-if="!visiblePhoto">
+                            <img src="/images/cubeloader.gif"/>
+                        </div>    
+                        <img ng-src="/photo/img{{ photo.id }}_ax800" src="" style="max-height: 75vh" imageonload="showPhoto()"/>
+                    </td>
+                    <td class="photo-button-container photo-button-container-right">
+                        <button ng-click="goToNext(photo.id)"> > </button>
+                    </td>
+                </tr>
+            </table>
         </div>    
         <div class="col-md-3">
             <ul class="nav nav-tabs">

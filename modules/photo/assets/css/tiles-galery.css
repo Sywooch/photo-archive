@@ -33,7 +33,7 @@
     outline: thick solid white;
     box-sizing: border-box;
     position: relative;
-    
+    background-color: #aaa;
 }
 
 .scroll-element.scroll-x {
@@ -56,4 +56,54 @@
     margin-top: 15px !important;
     height: 100% !important;
     width: 85% !important;
+}
+
+.loader-in-dialog{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    padding-top: 40px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+table.photo-main-container {
+    width: 100%;
+}
+.photo-container{
+    text-align: center;
+    position: relative;
+} 
+.photo-button-container{
+    width:25px;
+} 
+.photo-button-container-left{}
+.photo-button-container-right{}
+
+.fade.ng-hide {
+  opacity: 0;
+}
+
+.fade.ng-hide-remove,
+.fade.ng-hide-add {
+  display: block !important;
+}
+
+.fade.ng-hide-remove {
+  transition: all linear 1000ms;
+}
+
+.fade.ng-hide-add {
+  transition: all linear 500ms;
+}
+
+.end_tail, .loadnextpage {
+    margin-top: 10px;
+    border: 1px solid #F1EDED;
+    background: #fff;
+    padding: 10px;
+    text-align: center;    
+    /*position: fixed;*/
 }

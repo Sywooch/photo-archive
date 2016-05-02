@@ -7,14 +7,8 @@ mod.directive('neverEndingStory', ['$rootScope', '$window', function($rootScope,
             var gap = 0;
             var canScroll = true;
             var handler = function () {
-//                var body = document.body,
-//                    html = document.documentElement;
-//
-//                var siteHeight = Math.max( body.scrollHeight, body.offsetHeight, 
-//                                       html.clientHeight, html.scrollHeight, html.offsetHeight );
                 gap = window.outerHeight;//siteHeight - raw.offsetHeight;
                 if(window.scrollY>=raw.offsetHeight-gap) {
-//                if (raw.scrollTop + raw.offsetHeight > raw.scrollHeight - gap) {
                     if (canScroll) {
                         canScroll = false;
                         setTimeout(function(){
