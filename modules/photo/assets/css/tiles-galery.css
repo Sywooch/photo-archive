@@ -73,9 +73,13 @@ table.photo-main-container {
     width: 100%;
 }
 .photo-container{
+    background-color: #000;
     text-align: center;
     position: relative;
 } 
+.photo-container:hover .normallyHidden {
+    display: block;
+}
 .photo-button-container{
     width:25px;
 } 
@@ -84,6 +88,11 @@ table.photo-main-container {
 
 .fade.ng-hide {
   opacity: 0;
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=90) !important;
+    opacity: 0.9 !important;
 }
 
 .fade.ng-hide-remove,
@@ -106,4 +115,42 @@ table.photo-main-container {
     padding: 10px;
     text-align: center;    
     /*position: fixed;*/
+}
+
+.dialog-tab-content {
+    padding-top: 10px;
+}
+
+#dialog-close-button{
+    position: ABSOLUTE;
+    right: 1px;
+    top: 2px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    z-index: 99999999;
+}
+
+.dialog-title {
+    padding: 0px !important;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.dialog-image {
+    max-height: 90vh;max-width: 100%;
+}
+
+.fullscreenmode{
+    position: absolute;
+    z-index: 9999999;
+    color: #222;
+    right: 10px;
+    top: 10px;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.5);
+    display: none;
 }

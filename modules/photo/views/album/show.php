@@ -20,6 +20,8 @@ $this->registerJsFile($assetsPath.'/js/ng-never-ending-story.js');
 $this->registerJsFile($assetsPath.'/js/ng-tiles-gallery.js');
 /* ładuję moduł imageonload */
 $this->registerJsFile($assetsPath.'/js/ng-imageonload.js');
+/* ładuję skrypt fullScreenMode*/
+$this->registerJsFile($assetsPath.'/js/fullscreenmode.js');
 ?>
 <div ng-app="myApp" ng-controller="photosCtrl">
     <div id="tiles-galery" class="col-lg-12 tiles-galery scrollbar-light" never-ending-story="nextPhotos()" jquery-scrollbar="jqueryScrollbarOptions">
@@ -114,6 +116,7 @@ $this->registerJsFile($assetsPath.'/js/ng-imageonload.js');
     });
     
     angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, photo, $document) {
+        $scope.dialogView = 'normal';
         $scope.photo = photo;
         $scope.visiblePhoto = true;
         $scope.showPhoto = function() {
@@ -155,5 +158,18 @@ $this->registerJsFile($assetsPath.'/js/ng-imageonload.js');
                 $scope.goToPrevious($scope.photo.id);
             }
         });
+        
+        $scope.ngToggleFullScreen = function () {
+            toggleFullScreen();
+            if ($scope.dialogView === 'fullscreen') {
+                $scope.dialogView = 'normal';
+            } else {
+                $scope.dialogView = 'fullscreen';
+            }
+        };
+        
+        $scope.getDialogView = function () {
+            return $scope.dialogView;
+        }
     });
 </script>
