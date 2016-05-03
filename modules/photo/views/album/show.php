@@ -115,6 +115,7 @@ $this->registerJsFile($assetsPath.'/js/fullscreenmode.js');
        
     });
     
+    /* DIALOG KONTROLER */
     angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $http, photo, $document) {
         $scope.dialogView = 'normal';
         $scope.photo = photo;
@@ -170,6 +171,6 @@ $this->registerJsFile($assetsPath.'/js/fullscreenmode.js');
         
         $scope.getDialogView = function () {
             return $scope.dialogView;
-        }
+        };
     });
 </script>

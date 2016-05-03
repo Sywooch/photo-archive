@@ -5,23 +5,15 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-9">
-            <table class="photo-main-container">
-                <tr>
-                    <td class="photo-button-container photo-button-container-left">
-                        <button ng-click="goToPrevious(photo.id)"> < </button>
-                    </td>
-                    <td class="photo-container">
-                        <div class="fullscreenmode normallyHidden" ng-click="ngToggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"> </span></div>
-                        <div class="loader-in-dialog" ng-if="!visiblePhoto">
-                            <img src="/images/cubeloader.gif"/>
-                        </div>    
-                        <img class="dialog-image" ng-src="/photo/img{{ photo.id }}_ax800" src="" imageonload="showPhoto()"/>
-                    </td>
-                    <td class="photo-button-container photo-button-container-right">
-                        <button ng-click="goToNext(photo.id)"> > </button>
-                    </td>
-                </tr>
-            </table>
+            <div class="photo-container">
+                <div ng-click="goToPrevious(photo.id)" class="normallyHidden navi-button navi-button-left"><span class="glyphicon glyphicon-chevron-left"> </span></div>
+                <div ng-click="goToNext(photo.id)" class="normallyHidden navi-button navi-button-right"><span class="glyphicon glyphicon-chevron-right"> </span></div>
+                <div class="fullscreenmode normallyHidden" ng-click="ngToggleFullScreen()"><span class="glyphicon glyphicon-resize-full"> </span></div>
+                <div class="loader-in-dialog" ng-if="!visiblePhoto">
+                    <img src="/images/cubeloader.gif"/>
+                </div>    
+                <img class="dialog-image" ng-src="/photo/img{{ photo.id }}_ax800" src="" imageonload="showPhoto()"/>
+            </div>
         </div>    
         <div class="col-md-3" style="padding: 0px;">
             <div class="col-md-12 dialog-title">

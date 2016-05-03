@@ -38,7 +38,14 @@
     </div>    
 </div>
 <div class="row">
-    <div ng-click="open(photo[0][10])" class="tile" tile-size="100" tiles-gallery tile-src="/photo/img{{ photo[0][10].id }}_ax800" tile-gallery-width="{{gallery_width}}">
-        <div class="tile-title">{{ photo[0][10].title }}</div>
-    </div>    
+    <div class="col-md-6 col">
+        <div ng-click="open(photo[0][10])" class="tile" tile-size="50" tiles-gallery tile-src="/photo/img{{ photo[0][10].id }}_ax400" tile-gallery-width="{{gallery_width}}">
+            <div class="tile-title">{{ photo[0][10].title }}</div>
+        </div>
+    </div>  
+    <div class="col-md-6 col">
+        <div ng-click="open(photo[0][11])" class="tile" tile-size="50" tiles-gallery tile-src="/photo/img{{ photo[0][11].id }}_ax400" tile-gallery-width="{{gallery_width}}">
+            <div class="tile-title">{{ photo[0][11].title }}</div>
+        </div>
+    </div>  
 </div>
